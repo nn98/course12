@@ -37,7 +37,7 @@ public class DirectedGraphTest {
 		// graph2 각 정점의 in-degree를 출력
 		System.out.println("graph2");
 		for(int i = 0; i < n; i++) {
-			System.out.println("정점 " + i + "의 진입차수 = " + graph2.inDegree(i));  
+			System.out.println("정점 " + i + "의 진입차수 = " + graph2.num[i]);  
 		}
 	}
 }
@@ -98,6 +98,7 @@ class DirectedListGraph {
 			this.vertex = vertex;
 		}
 	}
+	public int[] num;
 	private Node[] list; // 인접 리스트
 	private int n;   // 정점 수
 
@@ -105,6 +106,7 @@ class DirectedListGraph {
 	public DirectedListGraph(int n) {
 		list = new Node[n];
 		this.n = n;
+		num=new int[n];
 	}
 
 	// 정점 v의 진입차수를 구하여 리턴하는 메소드 ************* (2)
@@ -141,9 +143,11 @@ class DirectedListGraph {
 			System.out.println("간선 삽입 오류 - 이미 존재하는 간선입니다. (" + v1 + ", " + v2 + ")");
 		}
 		else {
+			num[v2]++;
 			Node newNode = new Node(v2);
 			newNode.link = list[v1];
 			list[v1] = newNode;
+			
 		}
 	}
 
